@@ -11,6 +11,7 @@ import {
 
 import Home from './src/screens/containers/Home';
 import Header from './src/sections/components/Header';
+import SuggestionsList from './src/videos/containers/SuggestionsList';
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -21,6 +22,7 @@ export default class App extends Component<Props> {
         <Text>{'Buscador'}</Text>
         <Text>{'Categorias'}</Text>
         <Text>{'Sugerencias'}</Text>
+        <SuggestionsList />
       </Home>
     );
   }
