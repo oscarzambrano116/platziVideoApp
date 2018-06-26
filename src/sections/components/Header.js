@@ -26,7 +26,7 @@ function Header(props) {
             source={require('../../../assets/logo.png')}
             style={logo}
           />
-          <View style={right}>
+          <View>
             {children}
           </View>
         </View>
@@ -45,13 +45,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 10,
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
-  right: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  }
 });
 
 export default Header
