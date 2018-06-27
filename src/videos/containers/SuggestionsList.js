@@ -6,6 +6,7 @@ import {
 import SuggestionsListLayout from '../components/SuggestionsListLayout';
 import Empty from '../components/Empty';
 import VerticalSeparator from '../components/VerticalSeparator';
+import Suggestion from '../components/Suggestion';
 
 class SuggestionsList extends Component {
   renderEmpty = () => (
@@ -14,6 +15,10 @@ class SuggestionsList extends Component {
 
   itemSeparator = () => (
     <VerticalSeparator />
+  )
+
+  renderItem = ({ item }) => (
+    <Suggestion {...item} />
   )
 
   render() {
@@ -36,7 +41,7 @@ class SuggestionsList extends Component {
           data={list}
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.itemSeparator}
-          renderItem={({ item }) => <Text>{item.title}</Text>}
+          renderItem={this.renderItem}
         />
       </SuggestionsListLayout>
     );
