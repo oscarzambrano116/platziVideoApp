@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   View,
-  Text,
   StyleSheet,
 } from 'react-native';
 
@@ -15,11 +14,7 @@ function VerticalSeparator(props) {
   } = styles;
 
   return (
-    <View style={[ separator, { borderTopColor: color || '#EAEAEA' } ]}>
-      <Text>
-        {'Esto es un separador'}
-      </Text>
-    </View>
+    <View style={[ separator, { borderTopColor: color || '#EAEAEA' } ]} />
   );
 }
 

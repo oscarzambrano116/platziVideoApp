@@ -12,28 +12,38 @@ function Suggestion(props) {
     left,
     right,
     cover,
-    title,
-    year,
-    rating,
+    title: titleStyle,
+    year: yearStyle,
+    rating: ratingStyle,
     genreContainer,
     genreText,
   } = styles;
+
+  const {
+    title,
+    medium_cover_image,
+    year,
+    rating,
+    genres,
+  } = props;
 
   return (
     <View style={container}>
       <View style={left}>
         <Image
           style={cover}
-          source={require('../../../assets/logo.png')}
+          source={{
+            uri: medium_cover_image
+          }}
         />
         <View style={genreContainer}>
-          <Text style={genreText}>{'Acción'}</Text>
+          <Text style={genreText}>{genres[0]}</Text>
         </View>
       </View>
       <View style={right}>
-        <Text style={title}>{'Avengers'}</Text>
-        <Text style={year}>{'2007'}</Text>
-        <Text style={rating}>{'5 Estrellas'}</Text>
+        <Text style={titleStyle}>{title}</Text>
+        <Text style={yearStyle}>{year}</Text>
+        <Text style={ratingStyle}>{rating}</Text>
       </View>
     </View>
   );
