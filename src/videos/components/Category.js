@@ -1,98 +1,54 @@
 import React from 'react';
 import {
   View,
-  Image,
+  ImageBackground,
   Text,
   StyleSheet,
 } from 'react-native';
 
 function Category(props) {
   const {
-    container,
-    left,
-    right,
-    cover,
-    title: titleStyle,
-    year: yearStyle,
-    rating: ratingStyle,
-    genreContainer,
-    genreText,
+    wrapper,
+    genre,
   } = styles;
 
   const {
-    title,
-    medium_cover_image,
-    year,
-    rating,
+    background_image,
     genres,
   } = props;
 
   return (
-    <View style={container}>
-      <View style={left}>
-        <Image
-          style={cover}
-          source={{
-            uri: medium_cover_image
-          }}
-        />
-        <View style={genreContainer}>
-          <Text style={genreText}>{genres[0]}</Text>
-        </View>
-      </View>
-      <View style={right}>
-        <Text style={titleStyle}>{title}</Text>
-        <Text style={yearStyle}>{year}</Text>
-        <Text style={ratingStyle}>{rating}</Text>
-      </View>
-    </View>
+    <ImageBackground
+      style={wrapper}
+      source={{
+        uri: background_image,
+      }}
+    >
+      <Text style={genre}>{genres[0]}</Text>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-  },
-  genreContainer: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    backgroundColor: 'black',
-    paddingVertical: 5,
-    paddingHorizontal: 7,
-  },
-  genreText: {
-    color: 'white',
-    fontSize: 11,
-  },
-  cover: {
-    height: 150,
-    width: 100,
-    resizeMode: 'contain',
-  },
-  right: {
-    paddingLeft: 10,
-    justifyContent: 'space-between',
-  },
-  title: {
-    fontSize: 18,
-    color: '#44546B',
-  },
-  year: {
-    backgroundColor: '#70B124',
-    paddingVertical: 4,
-    paddingHorizontal: 6,
-    color: 'white',
-    fontSize: 11,
-    borderRadius: 5,
+  wrapper: {
+    width: 250,
+    height: 100,
+    borderRadius: 10,
     overflow: 'hidden',
-    alignSelf: 'flex-start',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  rating: {
-    color: '#6B6B6B',
-    fontSize: 14,
+  genre: {
+    color: 'white',
+    fontSize: 40,
     fontWeight: 'bold',
-  },
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    textShadowRadius: 0,
+  }
 })
 
 export default Category;

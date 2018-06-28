@@ -11,7 +11,7 @@ import Category from '../components/Category';
 
 class CategoriesList extends Component {
   renderEmpty = () => (
-    <Empty text={'No hay sugerencias'} />
+    <Empty text={'No hay categorías'} />
   )
 
   itemSeparator = () => (
@@ -37,7 +37,8 @@ class CategoriesList extends Component {
           horizontal
           keyExtractor={this.keyExtractor}
           data={list}
-          ListEmptyComponent={this.itemSeparator}
+          ListEmptyComponent={this.renderEmpty}
+          ItemSeparatorComponent={this.itemSeparator}
           renderItem={this.renderItem}
         />
       </CategoryListLayout>
