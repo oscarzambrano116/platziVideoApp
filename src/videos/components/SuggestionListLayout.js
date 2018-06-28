@@ -5,7 +5,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-function SuggestionsListLayout(props) {
+function SuggestionListLayout(props) {
   const {
     title,
     children,
@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SuggestionsListLayout;
+export default SuggestionListLayout;

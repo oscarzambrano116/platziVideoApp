@@ -3,9 +3,9 @@ import {
   FlatList,
   Text,
 } from 'react-native';
-import SuggestionsListLayout from '../components/SuggestionsListLayout';
+import SuggestionListLayout from '../components/SuggestionListLayout';
 import Empty from '../components/Empty';
-import VerticalSeparator from '../components/VerticalSeparator';
+import VerticalSeparator from '../../sections/components/VerticalSeparator';
 import Suggestion from '../components/Suggestion';
 
 class SuggestionsList extends Component {
@@ -29,7 +29,7 @@ class SuggestionsList extends Component {
     } = this.props
 
     return (
-      <SuggestionsListLayout
+      <SuggestionListLayout
         title={'Recomendado para ti'}
       >
         <FlatList
@@ -39,7 +39,7 @@ class SuggestionsList extends Component {
           ItemSeparatorComponent={this.itemSeparator}
           renderItem={this.renderItem}
         />
-      </SuggestionsListLayout>
+      </SuggestionListLayout>
     );
   }
 }
