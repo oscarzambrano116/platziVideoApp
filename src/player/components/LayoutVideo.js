@@ -10,6 +10,7 @@ function LayoutVideo(props) {
     video,
     loader,
     loading,
+    controls,
   } = props;
 
   const {
@@ -26,6 +27,7 @@ function LayoutVideo(props) {
       <View style={loaderStyle}>
         {loading && loader}
       </View>
+      {controls}
     </View>
   );
 }
