@@ -8,6 +8,7 @@ import CategoryListLayout from '../components/CategoryListLayout';
 import Empty from '../components/Empty';
 import HorizontalSeparator from '../../sections/components/HorizontalSeparator';
 import Category from '../components/Category';
+import { connect } from 'react-redux';
 
 class CategoriesList extends Component {
   renderEmpty = () => (
@@ -18,7 +19,7 @@ class CategoriesList extends Component {
     <HorizontalSeparator />
   )
 
-  renderItem = ({ item }) => (
+  renderItem = ({ item } ) => (
     <Category {...item} />
   )
 
@@ -46,4 +47,8 @@ class CategoriesList extends Component {
   }
 }
 
-export default CategoriesList;
+function mapStateToProps(state) {
+  debugger
+}
+
+export default connect(mapStateToProps)(CategoriesList);

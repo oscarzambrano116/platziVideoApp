@@ -24,7 +24,7 @@ function Category(props) {
         uri: background_image,
       }}
     >
-      <Text style={genre}>{genres[0]}</Text>
+      <Text style={genre}>{genres ? genres[0] : 'No genre'}</Text>
     </ImageBackground>
   );
 }

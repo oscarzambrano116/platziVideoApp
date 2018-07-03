@@ -5,6 +5,7 @@
  */
 
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 import {
   View,
   Text,
@@ -17,6 +18,7 @@ import SuggestionsList from './src/videos/containers/SuggestionsList';
 import CategoriesList from './src/videos/containers/CategoriesList';
 import Player from './src/player/containers/Player';
 import Api from './utils/api';
+import store from './store';
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -42,19 +44,21 @@ export default class App extends Component<Props> {
     } = this.state;
 
     return (
-      <Home>
-        <Header />
-        <Player />
-        <Text>{'Buscador'}</Text>
-        <Text>{'Categorias'}</Text>
-        <Text>{'Sugerencias'}</Text>
-        <CategoriesList
-          list={categoryList}
-        />
-        <SuggestionsList
-          list={suggestionList}
-        />
-      </Home>
+      <Provider store={store}>
+        <Home>
+          <Header />
+          <Player />
+          <Text>{'Buscador'}</Text>
+          <Text>{'Categorias'}</Text>
+          <Text>{'Sugerencias'}</Text>
+          <CategoriesList
+            list={categoryList}
+          />
+          <SuggestionsList
+            list={suggestionList}
+          />
+        </Home>
+      </Provider>
     );
   }
 }
