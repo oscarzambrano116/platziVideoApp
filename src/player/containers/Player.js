@@ -50,6 +50,12 @@ class Player extends Component {
     });
   }
 
+  handleFullscreenPlayerWillDismiss = () => {
+    this.setState({
+      fullscreen: false,
+    })
+  }
+
   setPlayerRef = (ref) => {
     this.player = ref;
   }
@@ -76,6 +82,7 @@ class Player extends Component {
             onLoad={this.onLoad}
             paused={paused}
             ref={this.setPlayerRef}
+            onFullscreenPlayerWillDismiss={this.handleFullscreenPlayerWillDismiss}
           />
         }
         loader={
