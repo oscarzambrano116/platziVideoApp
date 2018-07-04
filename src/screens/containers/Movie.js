@@ -3,6 +3,7 @@ import MovieLayout from '../components/MovieLayout';
 import Player from '../../player/containers/Player';
 import Header from '../../sections/components/Header';
 import Close from '../../sections/components/Close';
+import Details from '../../videos/components/Details';
 import { connect } from 'react-redux';
 
 class Movie extends Component {
@@ -17,6 +18,7 @@ class Movie extends Component {
   }
 
   render() {
+    const { movie } = this.props
     return (
       <MovieLayout>
         <Header>
@@ -25,9 +27,16 @@ class Movie extends Component {
           />
         </Header>
         <Player />
+        <Details {...movie} />
       </MovieLayout>
     );
   }
 }
 
-export default connect(null)(Movie);
+function mapStateToProps(state) {
+  return {
+    movie: state.selectedMovie,
+  }
+}
+
+export default connect(mapStateToProps)(Movie);
