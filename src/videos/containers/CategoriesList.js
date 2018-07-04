@@ -48,7 +48,9 @@ class CategoriesList extends Component {
 }
 
 function mapStateToProps(state) {
-  debugger
+  return {
+    list: state.categoryList,
+  };
 }
 
 export default connect(mapStateToProps)(CategoriesList);

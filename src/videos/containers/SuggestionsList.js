@@ -7,6 +7,7 @@ import SuggestionListLayout from '../components/SuggestionListLayout';
 import Empty from '../components/Empty';
 import VerticalSeparator from '../../sections/components/VerticalSeparator';
 import Suggestion from '../components/Suggestion';
+import { connect } from 'react-redux';
 
 class SuggestionsList extends Component {
   renderEmpty = () => (
@@ -44,4 +45,10 @@ class SuggestionsList extends Component {
   }
 }
 
-export default SuggestionsList;
+function mapStateToProps(state) {
+  return {
+    list: state.suggestionList,
+  };
+}
+
+export default connect(mapStateToProps)(SuggestionsList);

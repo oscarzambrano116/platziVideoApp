@@ -22,41 +22,32 @@ import store from './store';
 
 type Props = {};
 export default class App extends Component<Props> {
-  state = {
-    suggestionList: [],
-    categoryList: [],
-  }
-
   async componentDidMount() {
-    const movies = await Api.getSuggestions(10);
-    const categories = await Api.getMovies();
-
-    this.setState({
-      suggestionList: movies,
-      categoryList: categories,
+    const categoryList = await Api.getMovies();
+    store.dispatch({
+      type: 'SET_SUGGESTION_LIST',
+      payload: {
+        categoryList,
+      },
+    });
+    const suggestionList = await Api.getSuggestions(10);
+    store.dispatch({
+      type: 'SET_CATEGORY_LIST',
+      payload: {
+        suggestionList,
+      },
     });
   }
 
   render() {
-    const {
-      suggestionList,
-      categoryList,
-    } = this.state;
-
     return (
       <Provider store={store}>
         <Home>
           <Header />
           <Player />
           <Text>{'Buscador'}</Text>
-          <Text>{'Categorias'}</Text>
-          <Text>{'Sugerencias'}</Text>
-          <CategoriesList
-            list={categoryList}
-          />
-          <SuggestionsList
-            list={suggestionList}
-          />
+          <CategoriesList />
+          <SuggestionsList />
         </Home>
       </Provider>
     );
