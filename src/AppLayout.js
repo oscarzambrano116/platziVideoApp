@@ -10,6 +10,7 @@ import Header from './sections/components/Header';
 import CategoriesList from './videos/containers/CategoriesList';
 import SuggestionsList from './videos/containers/SuggestionsList';
 import Movie from './screens/containers/Movie';
+import Search from './sections/containers/Search';
 import Api from '../utils/api';
 
 class AppLayout extends Component {
@@ -39,7 +40,7 @@ class AppLayout extends Component {
     return (
       <Home>
         <Header />
-        <Text>{'Buscador'}</Text>
+        <Search />
         <CategoriesList />
         <SuggestionsList />
       </Home>
