@@ -4,13 +4,40 @@ import {
   Text,
   Image,
   StyleSheet,
+  WebView,
+  ScrollView,
 } from 'react-native';
+
+
+const makeHTML = (id) => {
+  return (`
+    <style>
+      .video {
+        position: relative;
+        padding-bottom: 56.25%;
+      }
+      iframe {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <div className="video">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/${id}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  `);
+}
 
 function Details (props) {
   const {
     title,
     description_full,
     medium_cover_image,
+    yt_trailer_code,
   } = props;
 
   const {
@@ -20,10 +47,11 @@ function Details (props) {
     bottom,
     details,
     description,
+    trailer,
   } = styles;
 
   return (
-    <View>
+    <ScrollView>
       <View style={top}>
         <Text style={titleStyle}>{title}</Text>
       </View>
@@ -36,7 +64,12 @@ function Details (props) {
           <Text style={description}>{description_full}</Text>
         </View>
       </View>
-    </View>
+      <View style={trailer}>
+        <WebView
+          source={{ html: makeHTML(yt_trailer_code)}}
+        />
+      </View>
+    </ScrollView>
   );
 }
 
@@ -44,8 +77,8 @@ const styles = StyleSheet.create({
   container: {
   },
   trailer: {
+    padding: 20,
     height: 200,
-    marginBottom: 10,
   },
   details: {
     flexDirection: 'row',
