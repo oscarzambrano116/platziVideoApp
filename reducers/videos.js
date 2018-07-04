@@ -12,6 +12,12 @@ function videos (state = {}, action) {
         ...action.payload,
       }
     }
+    case 'SET_SELECTED_MOVIE': {
+      return {
+        ...state,
+        selectedMovie: action.payload.movie,
+      }
+    }
     default:
       return state
   }
