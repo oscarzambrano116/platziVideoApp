@@ -1,28 +1,24 @@
 import React from 'react';
-import Icon from '../../sections/components/Icon';
 import {
-  TouchableHighlight,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   StyleSheet,
-  Text,
 } from 'react-native';
+import Icon from '../../sections/components/Icon';
 
-function PlayPause(props) {
+function FullScreen(props) {
   const {
+    fullscreen,
     onPress,
-    paused,
   } = props;
 
   const {
-    container,
+    container
   } = styles;
 
-  return(
-    <TouchableHighlight
+  return (
+    <TouchableOpacity
       onPress={onPress}
       style={container}
-      underlayColor={'transparent'}
       hitSlop={{
         left: 5,
         top: 5,
@@ -31,13 +27,13 @@ function PlayPause(props) {
       }}
     >
       {
-        paused ? (
-          <Icon iconName={'play-arrow'} />
+        fullscreen ? (
+          <Icon iconName={'fullscreen-exit'} />
         ) : (
-          <Icon iconName={'pause'} />
+          <Icon iconName={'fullscreen'} />
         )
       }
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 }
 
@@ -52,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PlayPause;
+export default FullScreen;

@@ -29,6 +29,8 @@ const styles = StyleSheet.create({
     bottom: 0,
     height: 35,
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   }
 });
 
