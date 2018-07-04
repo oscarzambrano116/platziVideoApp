@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 
 import Video from 'react-native-video';
+import Loading from './src/sections/components/Loading';
 import Home from './src/screens/containers/Home';
 import Header from './src/sections/components/Header';
 import SuggestionsList from './src/videos/containers/SuggestionsList';
@@ -44,7 +45,7 @@ export default class App extends Component<Props> {
     return (
       <Provider store={store}>
         <PersistGate
-          loading={<Text>Cargando...</Text>}
+          loading={<Loading />}
           persistor={persistor}
         >
           <Home>
