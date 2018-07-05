@@ -4,6 +4,7 @@ import LayoutVideo from '../components/LayoutVideo';
 import ControlLayout from '../components/ControlLayout';
 import PlayPause from '../components/PlayPause';
 import FullScreen from '../components/FullScreen';
+import ProgressBar from '../components/ProgressBar';
 import {
   StyleSheet,
   ActivityIndicator,
@@ -15,6 +16,9 @@ class Player extends Component {
     loading: true,
     paused: false,
     fullscreen: false,
+    duration: 0.00,
+    currentTime: '0.00',
+    progress: 0,
   }
 
   onBuffer = ({ isBuffering }) => {
@@ -29,10 +33,16 @@ class Player extends Component {
     })
   }
 
-  onLoad = () => {
+  onLoad = (payload) => {
+    const duration = payload.duration / 60;
+    const mins = Math.floor(duration);
+    let seconds = duration % 1;
+    seconds = (seconds * 60) / 1000;
+    const totalTime = (mins + seconds * 10).toFixed(2);
     this.setState({
       loading: false,
-    })
+      duration: totalTime
+    });
   }
 
   playPause = () => {
@@ -60,15 +70,31 @@ class Player extends Component {
     this.player = ref;
   }
 
+  handleProgress = (payload) => {
+    const duration = payload.currentTime / 60;
+    const mins = Math.floor(duration);
+    let seconds = duration % 1;
+    seconds = (seconds * 60) / 1000;
+    const currentTime = (mins + seconds * 10).toFixed(2);
+    this.setState({
+      currentTime: currentTime,
+      progress: (payload.currentTime / payload.seekableDuration )
+    })
+  }
+
   render() {
     const {
       video: videoStyle,
+      duration: durationStyle,
     } = styles;
 
     const {
       loading,
       paused,
       fullscreen,
+      progress,
+      currentTime,
+      duration,
     } = this.state;
 
     return (
@@ -83,6 +109,7 @@ class Player extends Component {
             paused={paused}
             ref={this.setPlayerRef}
             onFullscreenPlayerWillDismiss={this.handleFullscreenPlayerWillDismiss}
+            onProgress={this.handleProgress}
           />
         }
         loader={
@@ -95,8 +122,8 @@ class Player extends Component {
               onPress={this.playPause}
               paused={paused}
             />
-            <Text>{'ProgressBar |'}</Text>
-            <Text>{'time left |'}</Text>
+            <ProgressBar progress={progress} />
+            <Text style={durationStyle}>{currentTime} / {duration}</Text>
             <FullScreen
               onPress={this.playerFullscreen}
               fullscreen={fullscreen}
@@ -116,6 +143,10 @@ const styles = StyleSheet.create({
     bottom: 0,
     top: 0,
   },
+  duration: {
+    color: 'white',
+    fontWeight: 'bold',
+  }
 });
 
 export default Player;
