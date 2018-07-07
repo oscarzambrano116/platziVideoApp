@@ -5,22 +5,26 @@
  */
 
 import React, { Component } from 'react';
-import {
-  Text,
-} from 'react-native';
+import { Provider } from 'react-redux';
 
-import Home from './src/screens/containers/Home';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './store';
+
+import AppLayout from './src/AppLayout';
+import Loading from './src/sections/components/Loading';
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <Home>
-        <Text>{'Header'}</Text>
-        <Text>{'Buscador'}</Text>
-        <Text>{'Categorias'}</Text>
-        <Text>{'Sugerencias'}</Text>
-      </Home>
+      <Provider store={store}>
+        <PersistGate
+          loading={<Loading />}
+          persistor={persistor}
+        >
+          <AppLayout />
+        </PersistGate>
+      </Provider>
     );
   }
 }
