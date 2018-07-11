@@ -14,6 +14,19 @@ class Movie extends Component {
     opacity: new Animated.Value(0),
   }
 
+  static navigationOptions = ({ navigation }) => {
+    const goScreenBack = () => navigation.goBack();
+    return {
+      header: (
+        <Header>
+          <Close
+            onPress={goScreenBack}
+          />
+        </Header>
+      )
+    }
+  }
+
   componentDidMount() {
     const { opacity } = this.state;
     Animated.timing(
@@ -32,7 +45,7 @@ class Movie extends Component {
       payload: {
         movie: null,
       },
-    })
+    });
   }
 
   render() {
@@ -52,11 +65,6 @@ class Movie extends Component {
         }}
       >
         <MovieLayout>
-          <Header>
-            <Close
-              onPress={this.closeVideo}
-            />
-          </Header>
           <Player />
           <Details {...movie} />
         </MovieLayout>
@@ -67,7 +75,7 @@ class Movie extends Component {
 
 function mapStateToProps(state) {
   return {
-    movie: state.selectedMovie,
+    movie: state.videos.selectedMovie,
   }
 }
 

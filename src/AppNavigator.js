@@ -1,9 +1,11 @@
 import { createStackNavigator } from 'react-navigation';
-import Loading from './sections/components/Loading';
+import Home from './screens/containers/Home';
+import Movie from './screens/containers/Movie';
 
 const Main = createStackNavigator(
   {
-    Home: Loading,
+    Home,
+    Movie,
   },
 );
 

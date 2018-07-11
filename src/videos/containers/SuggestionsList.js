@@ -8,6 +8,7 @@ import Empty from '../components/Empty';
 import VerticalSeparator from '../../sections/components/VerticalSeparator';
 import Suggestion from '../components/Suggestion';
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 
 class SuggestionsList extends Component {
   renderEmpty = () => (
@@ -32,7 +33,12 @@ class SuggestionsList extends Component {
       payload: {
         movie: item,
       },
-    })
+    });
+    dispatch(
+      NavigationActions.navigate({
+        routeName: 'Movie',
+      })
+    );
   }
 
   keyExtractor = ({ id }) => id.toString()
@@ -60,7 +66,7 @@ class SuggestionsList extends Component {
 
 function mapStateToProps(state) {
   return {
-    list: state.suggestionList,
+    list: state.videos.suggestionList,
   };
 }
 
