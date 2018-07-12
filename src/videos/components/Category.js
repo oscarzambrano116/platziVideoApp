@@ -3,6 +3,7 @@ import {
   View,
   ImageBackground,
   Text,
+  TouchableOpacity,
   StyleSheet,
 } from 'react-native';
 
@@ -15,17 +16,20 @@ function Category(props) {
   const {
     background_image,
     genres,
+    onPress,
   } = props;
 
   return (
-    <ImageBackground
-      style={wrapper}
-      source={{
-        uri: background_image,
-      }}
-    >
-      <Text style={genre}>{genres ? genres[0] : 'No genre'}</Text>
-    </ImageBackground>
+    <TouchableOpacity onPress={onPress}>
+      <ImageBackground
+        style={wrapper}
+        source={{
+          uri: background_image,
+        }}
+      >
+        <Text style={genre}>{genres ? genres[0] : 'No genre'}</Text>
+      </ImageBackground>
+    </TouchableOpacity>
   );
 }
 
