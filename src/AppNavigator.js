@@ -20,12 +20,14 @@ import Loading from './screens/containers/Loading';
 const Main = createStackNavigator(
   {
     Home,
-    Category,
+    Movie,
   },
   {
     navigationOptions: {
       header: Header,
+      gesturesEnabled: true,
     },
+    mode: 'modal',
     cardStyle: {
       backgroundColor: 'white',
     },
@@ -64,10 +66,10 @@ const withModal = createStackNavigator(
     Main: {
       screen: TabNavigator,
     },
-    Movie,
+    Category,
   },
   {
-    mode: 'modal',
+    mode: 'card',
     headerMode: 'none',
     cardStyle: {
       backgroundColor: 'white',

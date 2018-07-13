@@ -43,7 +43,7 @@ class About extends Component {
         />
         <Text style={text}>Platzi Video es construido como una aplicación educativa para enseñar React Native y React Navigation</Text>
         <Text style={text}>@oscarzz116</Text>
-        <Text style={text}>2019</Text>
+        <Text style={text}>2018</Text>
       </View>
     )
   }
