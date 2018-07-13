@@ -17,17 +17,15 @@ class About extends Component {
   }
 
   componentDidMount() {
-    /*
     const { navigation } = this.props;
-    this.focus = addListener('didFocus', () => {
+    this.focus = navigation.addListener('didFocus', () => {
       StatusBar.setBarStyle('light-content');
       StatusBar.setBackgroundColor('#022C43');
     });
-    */
   }
 
   componentWillUnmount() {
-    // this.focus.remove();
+    this.focus.remove();
   }
 
   render() {

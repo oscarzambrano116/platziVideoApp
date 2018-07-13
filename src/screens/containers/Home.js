@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import {
   View,
   Text,
+  StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -20,7 +21,7 @@ class Home extends Component {
   }
 
   async componentDidMount() {
-    const { dispatch } = this.props
+    const { dispatch, navigation } = this.props
     const categoryList = await Api.getMovies();
     dispatch({
       type: 'SET_CATEGORY_LIST',
@@ -35,6 +36,14 @@ class Home extends Component {
         suggestionList,
       },
     });
+    this.focus = navigation.addListener('didFocus', () => {
+      StatusBar.setBarStyle('dark-content');
+      StatusBar.setBackgroundColor('white');
+    });
+  }
+
+  componentWillUnmount() {
+    this.focus.remove();
   }
 
   render() {

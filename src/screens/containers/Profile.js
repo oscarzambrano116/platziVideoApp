@@ -18,17 +18,15 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    /*
     const { navigation } = this.props;
     this.focus = navigation.addListener('didFocus', () => {
       StatusBar.setBarStyle('dark-content');
       StatusBar.setBackgroundColor('white');
     });
-    */
   }
 
   componentWillUnmount() {
-    // this.focus.remove();
+    this.focus.remove();
   }
 
   handleLogout = () => {
