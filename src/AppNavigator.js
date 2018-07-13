@@ -5,6 +5,7 @@ import {
 import {
   createStackNavigator,
   createBottomTabNavigator,
+  createSwitchNavigator,
 } from 'react-navigation';
 import Home from './screens/containers/Home';
 import Movie from './screens/containers/Movie';
@@ -13,6 +14,8 @@ import Header from './sections/components/Header';
 import About from './screens/containers/About';
 import Profile from './screens/containers/Profile';
 import Lucky from './screens/containers/Lucky';
+import Login from './screens/containers/Login';
+import Loading from './screens/containers/Loading';
 
 const Main = createStackNavigator(
   {
@@ -52,6 +55,17 @@ const TabNavigator = createBottomTabNavigator(
       activeBackgroundColor: '#65A721',
     }
   },
-)
+);
 
-export default TabNavigator;
+const SwitchNavigator = createSwitchNavigator(
+  {
+    App: TabNavigator,
+    Login,
+    Loading,
+  },
+  {
+    initialRouteName: 'Loading',
+  },
+);
+
+export default SwitchNavigator;
