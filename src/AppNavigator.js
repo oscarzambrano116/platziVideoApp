@@ -20,13 +20,15 @@ import Loading from './screens/containers/Loading';
 const Main = createStackNavigator(
   {
     Home,
-    Movie,
     Category,
   },
   {
     navigationOptions: {
       header: Header,
-    }
+    },
+    cardStyle: {
+      backgroundColor: 'white',
+    },
   }
 );
 
@@ -57,9 +59,28 @@ const TabNavigator = createBottomTabNavigator(
   },
 );
 
+const withModal = createStackNavigator(
+  {
+    Main: {
+      screen: TabNavigator,
+    },
+    Movie,
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+    cardStyle: {
+      backgroundColor: 'white',
+    },
+    navigationOptions: {
+      gesturesEnabled: true,
+    },
+  }
+);
+
 const SwitchNavigator = createSwitchNavigator(
   {
-    App: TabNavigator,
+    App: withModal,
     Login,
     Loading,
   },

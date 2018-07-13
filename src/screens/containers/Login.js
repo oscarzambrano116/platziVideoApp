@@ -16,7 +16,9 @@ class Login extends Component {
     const token = 'ABCDEFGHIJK';
     const {
       dispatch,
-      navigation,
+      navigation: {
+        navigate,
+      },
     } = this.props;
     dispatch({
       type: 'SET_USER',
@@ -25,7 +27,7 @@ class Login extends Component {
         username: 'OscarZambrano'
       }
     })
-    navigation.navigate('Loading');
+    navigate('Loading');
   }
 
   render() {

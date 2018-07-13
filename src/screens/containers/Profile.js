@@ -32,14 +32,17 @@ class Profile extends Component {
   handleLogout = () => {
     const {
       dispatch,
-      navigation,
+      navigation: {
+        navigate,
+      },
     } = this.props;
 
     dispatch({
       type: 'REMOVE_USER',
     })
-    navigation.navigate('Loading');
+    navigate('Loading');
   }
+
   render() {
     const {
       user,
