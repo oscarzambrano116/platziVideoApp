@@ -6,6 +6,10 @@ import {
   initializeListeners,
   createDidUpdateCallback,
 } from 'react-navigation-redux-helpers';
+import {
+  BackHandler,
+} from 'react-native';
+import { NavigationActions } from 'react-navigation';
 
 const addListener = createReduxBoundAddListener('root');
 const didUpdate = createDidUpdateCallback('root');
@@ -14,10 +18,25 @@ class AppNavigatorWithState extends Component {
   componentDidMount() {
     const { navigation } = this.props;
     initializeListeners('root', navigation);
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
   }
 
   componentDidUpdate() {
     return didUpdate();
+  }
+
+  componentWillUnmount() {
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  onBackPress = () => {
+    const { dispatch } = this.props;
+    dispatch(
+      NavigationActions.back({
+        key: null,
+      })
+    );
+    return true;
   }
 
   render() {
