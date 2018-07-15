@@ -6,6 +6,7 @@ import {
   createStackNavigator,
   createBottomTabNavigator,
   createSwitchNavigator,
+  createDrawerNavigator,
 } from 'react-navigation';
 import Home from './screens/containers/Home';
 import Movie from './screens/containers/Movie';
@@ -16,6 +17,7 @@ import Profile from './screens/containers/Profile';
 import Lucky from './screens/containers/Lucky';
 import Login from './screens/containers/Login';
 import Loading from './screens/containers/Loading';
+import Drawer from './sections/components/Drawer';
 
 const Main = createStackNavigator(
   {
@@ -80,9 +82,48 @@ const withModal = createStackNavigator(
   }
 );
 
+const DrawerNavigator = createDrawerNavigator(
+  {
+    Main: {
+      screen: withModal,
+      navigationOptions: {
+        title: 'Inicio',
+        drawerIcon: <Text>{'🏠'}</Text>,
+      }
+    },
+    Sobre: {
+      screen: About,
+    },
+    Suerte: {
+      screen: Lucky,
+    },
+  },
+  {
+    drawerWidth: 200,
+    drawerBackgroundColor: '#F6F6F6',
+    contentComponent: Drawer,
+    contentOptions: {
+      activeBackgroundColor: '#7ABA2F',
+      activeTintColor: 'white',
+      ianctiveTintColor: '#828282',
+      inactiveBackgroundColor: 'white',
+      itemStyle: {
+        borderBottomWidth: 0.5,
+        borderBottomColor: 'rgba(0, 0, 0, 0.5)',
+      },
+      labelStyle: {
+        marginHorizontal: 0,
+      },
+      iconContainerStyle: {
+        marginHorizontal: 5,
+      },
+    },
+  },
+);
+
 const SwitchNavigator = createSwitchNavigator(
   {
-    App: withModal,
+    App: DrawerNavigator,
     Login,
     Loading,
   },
