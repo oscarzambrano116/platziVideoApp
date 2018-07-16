@@ -40,7 +40,7 @@ function Suggestion(props) {
             }}
           />
           <View style={genreContainer}>
-            <Text style={genreText}>{genres[0]}</Text>
+            <Text style={genreText}>{genres ? genres[0] : 'Category'}</Text>
           </View>
         </View>
         <View style={right}>

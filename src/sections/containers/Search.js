@@ -4,6 +4,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 import API from '../../../utils/api';
 
 class Search extends Component {
@@ -21,14 +22,17 @@ class Search extends Component {
       }
     } = this;
     const movies = await API.searchMovie(text);
-    console.log('------movies----');
-    console.log(movies);
     dispatch({
       type: 'SET_SELECTED_MOVIE',
       payload: {
         movie: movies[0],
       },
     });
+    dispatch(
+      NavigationActions.navigate({
+        routeName: 'Movie',
+      })
+    );
   }
 
   handleChangeText = (text) => {

@@ -9,6 +9,7 @@ import Empty from '../components/Empty';
 import HorizontalSeparator from '../../sections/components/HorizontalSeparator';
 import Category from '../components/Category';
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 
 class CategoriesList extends Component {
   renderEmpty = () => (
@@ -19,8 +20,23 @@ class CategoriesList extends Component {
     <HorizontalSeparator />
   )
 
+  viewCategory = (item) => {
+    const { dispatch } = this.props;
+    dispatch(
+      NavigationActions.navigate({
+        routeName: 'Category',
+        params: {
+          genre: item.genres[0],
+        },
+      })
+    );
+  }
+
   renderItem = ({ item } ) => (
-    <Category {...item} />
+    <Category
+      onPress={() => this.viewCategory(item)}
+      {...item}
+    />
   )
 
   keyExtractor = ({ id }) => id.toString()
@@ -49,7 +65,7 @@ class CategoriesList extends Component {
 
 function mapStateToProps(state) {
   return {
-    list: state.categoryList,
+    list: state.videos.categoryList,
   };
 }
 

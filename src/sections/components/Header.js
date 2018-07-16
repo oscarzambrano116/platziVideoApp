@@ -16,11 +16,12 @@ function Header(props) {
     logo,
     container,
     right,
+    statusBar,
   } = styles;
 
   return (
     <View>
-      <SafeAreaView>
+      <SafeAreaView style={statusBar}>
         <View style={container}>
           <Image
             source={require('../../../assets/logo.png')}
@@ -40,6 +41,9 @@ const styles = StyleSheet.create({
     width: 80,
     height: 26,
     resizeMode: 'contain'
+  },
+  statusBar: {
+    backgroundColor: 'white',
   },
   container: {
     paddingVertical: 10,
